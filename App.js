@@ -15,10 +15,13 @@ export default class App extends Component{
     let n3 = parseFloat(this.state.nota3)
     let media = (n1 + n2 + n3) /3
     
-    if(media >= 6 && this.state.nFaltas > 6 ){
-      this.setState({result: "O aluno foi aprovado com media:" , m: media.toFixed(1)})
-    }else{
+    if(media < 6){
       this.setState({result: "O aluno foi reprovado com media:" , m: media.toFixed(1)})
+    }else{
+      this.setState({result: "O aluno foi aprovado com media:" , m: media.toFixed(1)})
+    }
+    if(this.state.nFaltas > 6){
+      alert('Aluno reprovado as faltas passaram o limite maximo de 6')
     }
   }
 
@@ -52,7 +55,7 @@ export default class App extends Component{
         </TouchableOpacity>
         <Text style={styles.text3}>{this.state.result}</Text>
         <Text style={styles.text4}>{this.state.m}</Text>
-        <Text style={styles.textRodaPe}>                       Todos os direitos reservados           {'\u00A9'}DSFC</Text>
+        <Text style={styles.textRodaPe}>                       Todos os direitos reservados        {'\u00AE'}DSFC{'\u00A9'}</Text>
       </View>
     )
   }
@@ -94,15 +97,18 @@ const styles = StyleSheet.create({
   },
   textToutch:{
     textAlign: "center",
+    fontWeight: 'bold',
     padding: 10,
     fontSize: 20,
     marginTop: 20,
     marginLeft: 50,
     marginRight: 50,
     borderColor:  '#000',
-    backgroundColor: '#1E90FF'
+    backgroundColor: '#1E90FF',
+    borderRadius: 10,
   },
   textInput:{
+    borderRadius: 10,
     padding: 10,
     backgroundColor: '#cccccc',
     marginLeft: 50,
